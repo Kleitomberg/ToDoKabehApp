@@ -163,7 +163,10 @@ export default function Home() {
          <TodoForm onAdd={aadcionarTarefa}/>
 
         <div className="container mt-3">
-            {tarefas.map((tarefa) => (
+
+            {!tarefas.length && <div className="alert alert-info">Nenhuma tarefa encontrada</div>}
+
+            { tarefas.map((tarefa) => (
                 <div className="card mt-2" key={tarefa.id}>
                     <div className="card-body d-flex justify-content-between">
                         <div className="">
