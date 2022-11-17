@@ -20,8 +20,7 @@ export default function Home() {
     const { authenticated, user } = useContext(AuthContext)
 
     const usuariologado = JSON.parse(localStorage.getItem('usuarioLogado'))
-    console.log(authenticated.uid)
-    console.log(user.uid)
+
 
 
     const [tarefas, setTarefas] = useState([]);
@@ -151,7 +150,7 @@ export default function Home() {
 
     useEffect(() => {
         const mytarefas =  collection(db, 'tarefas')
-        console.log(mytarefas)
+
 
         const q = query(mytarefas, orderBy('created', 'desc'), where('user_id', '==', user.uid || usuariologado.uid))
 
@@ -161,7 +160,7 @@ export default function Home() {
             const docs = [];
 
             querySnapshot.forEach((doc) => {
-                console.log(doc.data().title)
+
 
                 docs.push(
                     {   id: doc.id,
