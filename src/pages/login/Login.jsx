@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import './Login.css'
 import {toast} from 'react-toastify';
@@ -20,7 +20,10 @@ export default function Login(props) {
     function handleLogin(e){
 
         e.preventDefault();
+
+
         login(email, password)
+
 
 
     }
@@ -33,7 +36,7 @@ export default function Login(props) {
     <div className="container contaner-login">
 
       <h1>Login</h1>
-      <p>{String(authenticated)}</p>
+
       <div>
         <form>
             <div className="form-group">
