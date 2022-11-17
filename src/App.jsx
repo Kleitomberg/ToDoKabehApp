@@ -1,30 +1,9 @@
-import { useState } from 'react'
+import AppRoutes from "./Routes";
 
-import './App.css'
-import About from './pages/about/About'
-import Home from './pages/home/Home'
-import {createBrowserRouter } from 'react-router-dom'
+export default function App() {
+    return (
 
-const routers = createBrowserRouter
-(
+            <AppRoutes/>
 
-    [
-        {
-            path: '/',
-            element: <Home/>
-        },
-        {
-            path: '/about',
-            element: <About/>
-        },
-
-        {
-            path: '*',
-            element: <h1>404</h1>
-        }
-
-    ]
-
-)
-
-export default routers
+    );
+}

@@ -3,144 +3,166 @@ import TodoForm from "../../components/form/TodoFomr";
 import Menu from "../../components/menu/Menu";
 import {toast} from 'react-toastify';
 import { db } from '../../services/firebase';
-import { collection, onSnapshot,query,orderBy, setDoc, addDoc, deleteDoc, doc,updateDoc } from 'firebase/firestore'
-
+import { signOut } from 'firebase/auth';
+import { AuthContext } from "../../context/AuthContext";
+import { collection, onSnapshot,query,orderBy, setDoc, addDoc, deleteDoc, doc,updateDoc, where } from 'firebase/firestore'
+import { useContext } from "react";
 import './Home.css'
 import Footer from "../../components/footer/Footer";
 
-function aadcionarTarefa(tarefa, e) {
-    e.preventDefault();
 
-    if (tarefa !== "") {
-        addDoc(collection(db, "tarefas"), {
-            title: tarefa,
-            done: false,
-            created: new Date()
-        }).then(() => {
-            toast.success('Tarefa Adicionada com sucesso!', {
-                position: "bottom-right",
-                autoClose: 2500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                });
-        }
-        ).catch((error) => {
-            toast.error('Error ao adicionar tarefa!', {
-                position: "bottom-right",
-                autoClose: 2500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                });
-        }
-        );
-
-    }
-}
-
-async function deleteTask(id){
-    await deleteDoc(doc(db, 'tarefas', id))
-    .then(() => {
-    toast.success('Tarefa deletada com sucesso!',{
-        position: "bottom-right",
-        autoClose: 2500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-    })
-    })
-    .catch((error) => {
-    toast.error('Erro ao deletar tarefa')
-    })
-}
-
-async function updateTask(id, type){
-    const task = doc(db, 'tarefas', id)
-
-    if(type === 'done'){
-    updateDoc(task, {
-        done: true
-        })
-        .then(() => {
-        toast.success('Tarefa marcada como concluida!',
-        {
-            position: "bottom-right",
-            autoClose: 2500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-
-        })
-        })
-        .catch((error) => {
-        toast.error('Erro ao atualizar tarefa',{
-            position: "bottom-right",
-                autoClose: 2500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-        })
-        })
-    }else{
-    updateDoc(task, {
-        done: false
-        })
-        .then(() => {
-        toast.success('Tarefa marcada como não concluida!',{
-            position: "bottom-right",
-            autoClose: 2500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-        })
-        })
-        .catch((error) => {
-        toast.error('Erro ao atualizar tarefa',{
-            position: "bottom-right",
-                autoClose: 2500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-        })
-        })
-    }
-}
 
 
 
 
 export default function Home() {
 
+    const { authenticated, user } = useContext(AuthContext)
+
+    const usuariologado = JSON.parse(localStorage.getItem('usuarioLogado'))
+    console.log(authenticated.uid)
+    console.log(user.uid)
+
+
     const [tarefas, setTarefas] = useState([]);
+
+    function aadcionarTarefa(tarefa, e) {
+        e.preventDefault();
+        const usuariologado = JSON.parse(localStorage.getItem('usuarioLogado'))
+
+        if (tarefa !== "") {
+            addDoc(collection(db, "tarefas"), {
+                title: tarefa,
+                done: false,
+                user_id:user.uid,
+                created: new Date()
+            }).then(() => {
+                toast.success('Tarefa Adicionada com sucesso!', {
+                    position: "bottom-right",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
+            }
+            ).catch((error) => {
+                toast.error('Error ao adicionar tarefa!', {
+                    position: "bottom-right",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
+            }
+            );
+
+        }
+    }
+
+    async function deleteTask(id){
+        await deleteDoc(doc(db, 'tarefas', id))
+        .then(() => {
+        toast.success('Tarefa deletada com sucesso!',{
+            position: "bottom-right",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        })
+        })
+        .catch((error) => {
+        toast.error('Erro ao deletar tarefa')
+        })
+    }
+
+    async function updateTask(id, type){
+        const task = doc(db, 'tarefas', id)
+
+        if(type === 'done'){
+        updateDoc(task, {
+            done: true
+            })
+            .then(() => {
+            toast.success('Tarefa marcada como concluida!',
+            {
+                position: "bottom-right",
+                autoClose: 2500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+
+            })
+            })
+            .catch((error) => {
+            toast.error('Erro ao atualizar tarefa',{
+                position: "bottom-right",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+            })
+            })
+        }else{
+        updateDoc(task, {
+            done: false
+            })
+            .then(() => {
+            toast.success('Tarefa marcada como não concluida!',{
+                position: "bottom-right",
+                autoClose: 2500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            })
+            })
+            .catch((error) => {
+            toast.error('Erro ao atualizar tarefa',{
+                position: "bottom-right",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+            })
+            })
+        }
+    }
+
+
     useEffect(() => {
-        const mytarefas =  collection(db, 'tarefas');
-        const q = query(mytarefas, orderBy('created', 'desc'));
+        const mytarefas =  collection(db, 'tarefas')
+        console.log(mytarefas)
+
+        const q = query(mytarefas, orderBy('created', 'desc'), where('user_id', '==', user.uid || usuariologado.uid))
+
 
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
+
             const docs = [];
+
             querySnapshot.forEach((doc) => {
+                console.log(doc.data().title)
+
                 docs.push(
                     {   id: doc.id,
                         title:doc.data().title,
@@ -157,7 +179,8 @@ export default function Home() {
 
     return (
         <div className="">
-            <Menu/> <br />
+            <Menu /> <br />
+
         <h2 className="container"> <i className="fa-solid fa-clipboard-list"> </i>  Tarefas</h2>
 
          <TodoForm onAdd={aadcionarTarefa}/>

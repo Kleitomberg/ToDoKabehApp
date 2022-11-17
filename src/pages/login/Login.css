@@ -1,0 +1,37 @@
+.contaner-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    min-width: 320px;
+
+}
+.contaner-login form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+
+}
+
+.contaner-login form input{
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    width: 350px;
+}
+
+
+.btn-login{
+    text-align: center;
+    margin-top: 10px;
+}
