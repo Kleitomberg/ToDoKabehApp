@@ -1,6 +1,4 @@
 # ToDoKabehApp
-Primeira tentativa de criar um app React do zero sozinho!
-
 <p align="center">
 <a href="#Aprendizados">Aprendizados</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#Tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -13,13 +11,14 @@ Primeira tentativa de criar um app React do zero sozinho!
 ## 📚Aprendizados
 O projeto exercita boa parte dos conceitos e fundamentos da biblioteca!
 
-- Hooks (useState, useEffect)
+- Hooks (useState, useEffect, useContext)
 - Estados
 - props,
 - componentização,
 - Routers(React-Router-Dom)
 - Instalação e utilização de componentes externos(Tustify)
-- e ainda integração com Banco de dados Firebase com um crud simples
+- e ainda integração com Banco de dados Firebase com um crud simples e autenticação de usuario
+- trabaçhando com informações no localStorage
 
 ## ✨Tecnologias
 
