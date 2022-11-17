@@ -4,6 +4,7 @@ import { auth } from '../../services/firebase';
 import {AuthContext} from '../../context/AuthContext'
 import { useContext } from "react";
 import {toast} from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 import { onAuthStateChanged, updateProfile,createUserWithEmailAndPassword } from "firebase/auth";
 export default function Cadastro(props){
@@ -71,7 +72,7 @@ export default function Cadastro(props){
                         <button onClick={e=>handleCadastro(e)} type="submit" className="btn btn-primary text-center">Cadastrar</button>
                         </div>
                         <div>
-                            <p className='text-center'>Já tem uma conta? <a href='/login'>Faça login</a></p>
+                            <p className='text-center'>Já tem uma conta? <Link className='link' to='/login'>Faça login</Link></p>
                         </div>
                     </form>
 

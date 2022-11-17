@@ -8,6 +8,9 @@
 
 
 }
+.link{
+    font-weight: 700;
+}
 .contaner-login form{
     display: flex;
     flex-direction: column;

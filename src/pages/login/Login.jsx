@@ -7,6 +7,7 @@ import {signInWithEmailAndPassword} from 'firebase/auth'
 import {AuthContext} from '../../context/AuthContext'
 import { useContext } from "react";
 import Menu from "../../components/menu/Menu";
+import { Link } from "react-router-dom";
 
 export default function Login(props) {
 
@@ -51,7 +52,7 @@ export default function Login(props) {
             <button onClick={e=>{handleLogin(e)}} type="submit" className="btn btn-primary btn-login">Fazer Login</button>
 
             <div>
-                <p className='text-center mt-3'>Não tem uma conta? <a href='/cadastro'>Cadastre-se</a></p>
+                <p className='text-center mt-3'>Não tem uma conta? <Link className="link" to='/cadastro'>Cadastre-se</Link></p>
             </div>
         </form>
       </div>
