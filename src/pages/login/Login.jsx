@@ -49,6 +49,10 @@ export default function Login(props) {
                 <input value={password} onChange={e=>setPassword(e.target.value)} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
             </div>
             <button onClick={e=>{handleLogin(e)}} type="submit" className="btn btn-primary btn-login">Fazer Login</button>
+
+            <div>
+                <p className='text-center mt-3'>Não tem uma conta? <a href='/cadastro'>Cadastre-se</a></p>
+            </div>
         </form>
       </div>
 

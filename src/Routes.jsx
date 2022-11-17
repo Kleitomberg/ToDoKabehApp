@@ -8,6 +8,7 @@ import Login from './pages/login/Login'
 import { useContext } from 'react'
 import { AuthContext } from './context/AuthContext'
 import AuthProvider from './context/AuthContext'
+import Cadastro from './pages/cadastro/Cadastro'
 
 
 
@@ -33,6 +34,7 @@ const AppRoutes = () => {
                 <Route exact path="/" element={<Private> <Home /> </Private> }/>
                 <Route path="/about" element={<About />}/>
                 <Route path="/login" element={<Login />}/>
+                <Route path="/cadastro" element={<Cadastro />}/>
             </Routes>
 
             </AuthProvider>

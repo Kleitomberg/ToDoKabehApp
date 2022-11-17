@@ -39,7 +39,7 @@ export default function Menu(props){
             </ul>
 
             {authenticated ? (
-            <div className="me-2 text-end"><button className="btn btn-danger" onClick={sair}><i className="fa-solid fa-right-to-bracket"></i></button></div>
+            <div className="me-2 text-end"> {user.displayName}<button className="btn btn-danger ms-3" onClick={sair}><i className="fa-solid fa-right-to-bracket"></i></button></div>
         ) : (
             <div className="btn btn-primary btn-logout text-light text-end" ><Link to="/login">Login</Link></div>
         )}

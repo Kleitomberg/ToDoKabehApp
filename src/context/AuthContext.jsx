@@ -28,9 +28,12 @@ export default function AuthProvider(props){
 
     function login(email, password){
 
-        console.log('login')
-        console.log(email)
-        console.log(password)
+
+        if (email === '' || password === '') {
+            toast.error('Erro: Preencha todos os campos!')
+            return
+        }
+
 
 
         signInWithEmailAndPassword(auth, email, password)
@@ -44,7 +47,7 @@ export default function AuthProvider(props){
             navigate('/')
             localStorage.setItem('usuarioLogado', JSON.stringify(userCredential.user))
 
-            toast.success('Login Realizado com Sucesso!', {
+            toast.success(`Seja Bem vindo 😁! ${userCredential.user.displayName ||''}`, {
                 position: "top-right",
                 autoClose: 1500,
                 hideProgressBar: false,
@@ -52,13 +55,30 @@ export default function AuthProvider(props){
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "dark",
+                theme: "light",
                 });
-                toast.success('Bem vindo!', {});
+
 
         })
         .catch((error) => {
-            toast.error('Error ao Tentar Fazer Login!', {
+            const errorCode = error.code;
+
+            let msg = '';
+
+            if (errorCode === 'auth/wrong-password') {
+                msg = 'Senha incorreta!'
+            }
+            if (errorCode === 'auth/user-not-found') {
+                msg = 'Error: verifique se os dados estão corretos e tente novamente!'
+            }
+            if (errorCode === 'auth/invalid-email') {
+                msg = 'Email inválido!'
+            }
+            if (errorCode === 'auth/internal-error') {
+                msg = 'Erro interno, tente novamente mais tarde!'
+            }
+
+            toast.error(msg, {
                 position: "top-right",
                 autoClose: 1500,
                 hideProgressBar: false,
@@ -66,7 +86,7 @@ export default function AuthProvider(props){
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "dark",
+                theme: "light",
                 });
 
         });
@@ -80,7 +100,7 @@ export default function AuthProvider(props){
         localStorage.removeItem('user');
         setUser(false);
 
-        toast.success('Usuario deslogado com Sucesso!', {
+        toast.success('Você se deslogou 😞, sentirei sua falta!', {
             position: "top-right",
             autoClose: 1500,
             hideProgressBar: false,
@@ -88,7 +108,7 @@ export default function AuthProvider(props){
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: "light",
             });
     }
 
