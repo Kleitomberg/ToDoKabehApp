@@ -14,3 +14,86 @@ a{
     color:#205a8f;
     text-decoration:none;
 }
+
+:root{
+    --green:#A2E19F;
+    --green2:#3fbe84;
+    --red:#E28086;
+    --red2:#e24f4f;
+    --red3:#e25a67;
+    --blue:#A2CBE1;
+    --yellow:#FFE07D;
+    --yellow2:#f2d04f;
+    --yellow3:#ffcd2e;
+
+
+    --blue2:#62a9cf;
+}
+
+button.btn-primary{
+    background-color:var(--blue2);
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:1.2rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.3s ease-in-out;
+}
+
+button.btn-primary:hover{
+    background-color:var(--blue);
+}
+
+button.btn-success{
+    background-color:var(--green2);
+    color:white;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.3s ease-in-out;
+}
+
+button.btn-success:hover{
+    background-color:var(--green);
+}
+
+button.btn-danger{
+    background-color:var(--red3);
+    color:white;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.3s ease-in-out;
+}
+
+button.btn-danger:hover{
+    background-color:var(--red);
+}
+
+button.btn-warning{
+    background-color:var(--yellow3);
+    color:white;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.3s ease-in-out;
+}
+
+button.btn-warning:hover{
+    background-color:var(--yellow);
+    color:white;
+}
+
+.card{
+    background-color:transparent;
+    border-radius:8px;
+
+    padding:0.5rem;
+    border:none;
+    border:1px dashed var(--blue2);
+    margin-bottom:1.5rem;
+
+
+
+}

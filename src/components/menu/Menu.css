@@ -3,7 +3,7 @@
 }
 
 .navbar{
-    background-color: #205a8f !important;
+    background-color: var(--blue2) !important;
 }
 
 ..navbar-brand button{

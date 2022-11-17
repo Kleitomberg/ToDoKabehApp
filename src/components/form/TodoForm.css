@@ -1,3 +1,9 @@
 button .btn-primary{
     background-color: #2d8aca !important;
 }
+
+input.task{
+    border: 1px solid var(--blue) !important;
+    font-size: 1.2em !important;
+
+}

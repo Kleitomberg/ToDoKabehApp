@@ -30,7 +30,7 @@ export default function Menu(props){
             <div className="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
             <ul className="navbar-nav">
                 <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                <Link className="nav-link active" aria-current="page" to="/">Inicio</Link>
                 </li>
                 <li className="nav-item">
                 <Link className="nav-link" to="/about">Sobre</Link>

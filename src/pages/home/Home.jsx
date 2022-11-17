@@ -10,6 +10,7 @@ import { useContext } from "react";
 import './Home.css'
 import Footer from "../../components/footer/Footer";
 
+import img from '../../assets/todo.png'
 
 
 
@@ -180,7 +181,7 @@ export default function Home() {
         <div className="">
             <Menu /> <br />
 
-        <h2 className="container"> <i className="fa-solid fa-clipboard-list"> </i>  Tarefas</h2>
+        <h2 className="container"> <img src={img} alt="todo"  className=""/>  Tarefas</h2>
 
          <TodoForm onAdd={aadcionarTarefa}/>
 

@@ -11,10 +11,10 @@ export default function TodoForm(props) {
     }
 
     return (
-        <div className="container mt-4">
+        <div className="container mt-4 mb-5">
             <div className="d-flex">
         <input
-        className="form-control"
+        className="form-control task"
             placeholder="Digite uma tarefa"
             type="text"
             value={tarefa}
