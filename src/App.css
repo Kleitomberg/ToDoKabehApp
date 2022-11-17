@@ -1,0 +1,16 @@
+h2,h1,h3,h5,p{
+    color:#205a8f
+}
+
+body{
+    background-color:#f5f5f5
+
+}
+
+#root{
+    height:100%;
+}
+a{
+    color:#205a8f;
+    text-decoration:none;
+}

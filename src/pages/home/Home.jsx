@@ -6,6 +6,7 @@ import { db } from '../../services/firebase';
 import { collection, onSnapshot,query,orderBy, setDoc, addDoc, deleteDoc, doc,updateDoc } from 'firebase/firestore'
 
 import './Home.css'
+import Footer from "../../components/footer/Footer";
 
 function aadcionarTarefa(tarefa, e) {
     e.preventDefault();
@@ -47,7 +48,16 @@ function aadcionarTarefa(tarefa, e) {
 async function deleteTask(id){
     await deleteDoc(doc(db, 'tarefas', id))
     .then(() => {
-    toast.success('Tarefa deletada com sucesso!')
+    toast.success('Tarefa deletada com sucesso!',{
+        position: "bottom-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    })
     })
     .catch((error) => {
     toast.error('Erro ao deletar tarefa')
@@ -146,9 +156,9 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="container">
+        <div className="">
             <Menu/> <br />
-        <h2> <i className="fa-solid fa-clipboard-list"> </i>  Tarefas</h2>
+        <h2 className="container"> <i className="fa-solid fa-clipboard-list"> </i>  Tarefas</h2>
 
          <TodoForm onAdd={aadcionarTarefa}/>
 
@@ -176,7 +186,7 @@ export default function Home() {
                 </div>
             ))}
         </div>
-
+        <Footer/>
         </div>
     );
 }
