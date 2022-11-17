@@ -34,7 +34,7 @@ export default function Home() {
             addDoc(collection(db, "tarefas"), {
                 title: tarefa,
                 done: false,
-                user_id:user.uid,
+                user_id:user.uid || usuariologado.uid,
                 created: new Date()
             }).then(() => {
                 toast.success('Tarefa Adicionada com sucesso!', {

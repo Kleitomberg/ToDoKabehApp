@@ -27,7 +27,7 @@ export default function Menu(props){
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <div className="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
             <ul className="navbar-nav">
                 <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
@@ -37,14 +37,17 @@ export default function Menu(props){
                 </li>
 
             </ul>
+
+            {authenticated ? (
+            <div className="me-2 text-end"><button className="btn btn-danger" onClick={sair}><i className="fa-solid fa-right-to-bracket"></i></button></div>
+        ) : (
+            <div className="btn btn-primary btn-logout text-light text-end" ><Link to="/login">Login</Link></div>
+        )}
+
             </div>
         </div>
 
-        {authenticated ? (
-            <div className="me-2"><button className="btn btn-danger" onClick={sair}><i className="fa-solid fa-right-to-bracket"></i></button></div>
-        ) : (
-            <div className="btn btn-primary btn-logout text-light" ><Link to="/login">Login</Link></div>
-        )}
+
         </nav>
 
         </div>

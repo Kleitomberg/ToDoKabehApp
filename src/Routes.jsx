@@ -14,8 +14,13 @@ import AuthProvider from './context/AuthContext'
 const AppRoutes = () => {
 
     const Private = ({children}) => {
-        const {authenticated} = useContext(AuthContext)
+        const {authenticated,loadingAuth} = useContext(AuthContext)
+        if(loadingAuth){
+            return <h1>Carregando...</h1>
+        }else{
+
         return authenticated ? children : <Navigate to="/login"/>
+    }
     }
 
 

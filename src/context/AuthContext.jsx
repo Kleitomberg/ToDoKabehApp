@@ -15,7 +15,16 @@ export default function AuthProvider(props){
     const navigate = useNavigate();
 
     const [user, setUser] = useState(null)
+    const [loadingAuth, setLoadingAuth] = useState(true)
 
+    useEffect(() => {
+
+        const usuario = JSON.parse(localStorage.getItem('usuarioLogado'))
+        if(usuario){
+            setUser(usuario)
+        }
+        setLoadingAuth(false)
+    }, [])
 
     function login(email, password){
 
@@ -34,6 +43,7 @@ export default function AuthProvider(props){
 
             navigate('/')
             localStorage.setItem('usuarioLogado', JSON.stringify(userCredential.user))
+
             toast.success('Login Realizado com Sucesso!', {
                 position: "top-right",
                 autoClose: 1500,
@@ -84,7 +94,7 @@ export default function AuthProvider(props){
 
     return(
         <AuthContext.Provider
-            value={{ authenticated: !!user,user, login,logout
+            value={{ authenticated: !!user,user,loadingAuth, login,logout
             }}>
             {props.children}
         </AuthContext.Provider>
