@@ -101,7 +101,7 @@ export default function Home() {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "dark",
+                theme: "light",
 
             })
             })
@@ -130,7 +130,7 @@ export default function Home() {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "dark",
+                theme: "light",
             })
             })
             .catch((error) => {
@@ -142,7 +142,7 @@ export default function Home() {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "dark",
+                    theme: "light",
             })
             })
         }
