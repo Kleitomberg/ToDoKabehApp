@@ -41,7 +41,8 @@ export default function AuthProvider(props){
 
             setUser({
                 email: userCredential.user.email,
-                uid: userCredential.user.uid
+                uid: userCredential.user.uid,
+                displayName: userCredential.user.displayName
             })
 
             navigate('/')
